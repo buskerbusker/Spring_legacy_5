@@ -1,6 +1,7 @@
 package com.iu.s5.board;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BoardDAO {
 	// 멤버변수로 상수만을 가짐
@@ -9,10 +10,10 @@ public interface BoardDAO {
 	// public abstract. 생략가능
 
 	// List
-	public List<BoardVO> boardList() throws Exception;
+	public List<BoardVO> boardList(Map<String, Integer> map) throws Exception;
 
 	// select
-	public BoardVO boardSelect() throws Exception;
+	public BoardVO boardSelect(long num) throws Exception;
 
 	// insert
 	public int boardWrite(BoardVO boardVO) throws Exception;
@@ -24,6 +25,8 @@ public interface BoardDAO {
 	public int boardUpdate(BoardVO boardVO) throws Exception;
 
 	// hit update
-	public int boardHit(BoardVO boardVO) throws Exception;
+	public int hitUpdate(long num) throws Exception;
 
+	// count
+	public long boardCount() throws Exception;
 }
