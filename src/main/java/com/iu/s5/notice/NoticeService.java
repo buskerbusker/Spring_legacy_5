@@ -9,40 +9,29 @@ import org.springframework.stereotype.Service;
 
 import com.iu.s5.board.BoardService;
 import com.iu.s5.board.BoardVO;
+import com.iu.s5.util.Pager;
 
 @Service
 public class NoticeService implements BoardService {
-
+	
 	@Autowired
 	private NoticeDAO noticeDAO;
 
 	@Override
-	public List<BoardVO> boardList(int curPage) throws Exception {
-		int startRow = (curPage - 1) * 10 + 1;
-		int lastRow = curPage * 10;
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("startRow", startRow);
-		map.put("lastRow", lastRow);
-
-		// 총 글의 개수
-		long totalCount = noticeDAO.boardCount();
-		System.out.println(totalCount);
-
-		// 총 페이지의 개수
-		long totalPage = totalCount / 10;
-		if (totalCount % 10 != 0) {
-			totalPage++;
-		}
-		System.out.println(totalPage);
-		return noticeDAO.boardList(map);
-
+	public List<BoardVO> boardList(Pager pager) throws Exception {
+		
+		pager.makeRow();
+		long totalCount = noticeDAO.boardCount(pager);
+		pager.makePage(totalCount);
+		
+		return noticeDAO.boardList(pager);
 	}
 
 	@Override
 	public BoardVO boardSelect(long num) throws Exception {
 		// TODO Auto-generated method stub
+		noticeDAO.hitUpdate(num);
 		return noticeDAO.boardSelect(num);
-
 	}
 
 	@Override

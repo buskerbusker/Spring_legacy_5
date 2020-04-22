@@ -7,29 +7,38 @@ import org.springframework.stereotype.Service;
 
 import com.iu.s5.board.BoardService;
 import com.iu.s5.board.BoardVO;
+import com.iu.s5.util.Pager;
 
 @Service
 public class QnaService implements BoardService {
 
 	@Autowired
 	private QnaDAO qnaDAO;
-
+	
+	public int boardReply(BoardVO boardVO)throws Exception{
+		int result = qnaDAO.boardReplyUpdate(boardVO);
+		result = qnaDAO.boardReply(boardVO);
+		return result;
+	}
+	
 	@Override
-	public List<BoardVO> boardList(int curPage) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BoardVO> boardList(Pager pager) throws Exception {
+		
+		pager.makeRow();
+		
+		pager.makePage(qnaDAO.boardCount(pager));
+		
+		return qnaDAO.boardList(pager);
 	}
 
 	@Override
 	public BoardVO boardSelect(long num) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return qnaDAO.boardSelect(num);
 	}
 
 	@Override
 	public int boardWrite(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaDAO.boardWrite(boardVO);
 	}
 
 	@Override

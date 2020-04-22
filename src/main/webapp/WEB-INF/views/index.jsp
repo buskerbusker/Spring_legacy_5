@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +13,7 @@
 <body>
 	<c:import url="./template/header.jsp"></c:import>
 
-	<h1>Add Point Branch</h1>
-	<h1>
-		<a href="./notice/noticeWrite">Notice Write</a>
-	</h1>
+	
 </body>
 </html>
 

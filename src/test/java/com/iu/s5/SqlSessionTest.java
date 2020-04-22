@@ -7,12 +7,12 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class SqlSessionTest extends AbstractTestCase {
-
 	@Autowired
 	private SqlSession sqlSession;
-
+	
 	@Test
-	public void sqlTest() throws Exception {
+	public void sqlTest()throws Exception{
 		assertNotNull(sqlSession);
 	}
+	
 }
